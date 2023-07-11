@@ -9,10 +9,10 @@ from my_app.config import configure_logger, configure_sentry
 logger = logging.getLogger(__name__)
 
 
-@click.command()
 @click.option(
     "-v", "--verbose", is_flag=True, help="Pass to log at debug level instead of info"
 )
+@click.command()
 def main(verbose: bool) -> None:
     start_time = perf_counter()
     root_logger = logging.getLogger()
