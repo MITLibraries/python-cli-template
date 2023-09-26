@@ -8,16 +8,15 @@ click = "*"
 sentry-sdk = "*"
 
 [dev-packages]
-bandit = "*"
 black = "*"
-coverage = "*"
 coveralls = "*"
 mypy = "*"
-pylama = {extras = ["all"], version = "*"}
+pre-commit = "*"
 pytest = "*"
+ruff = "*"
 
 [requires]
-python_version = "3.10"
+python_version = "3.11"
 
 [scripts]
 my_app = "python -c \"from my_app.cli import main; main()\""

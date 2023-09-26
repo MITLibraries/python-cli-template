@@ -13,10 +13,10 @@ logger = logging.getLogger(__name__)
 @click.option(
     "-v", "--verbose", is_flag=True, help="Pass to log at debug level instead of info"
 )
-def main(verbose: bool) -> None:
+def main(*, verbose: bool) -> None:
     start_time = perf_counter()
     root_logger = logging.getLogger()
-    logger.info(configure_logger(root_logger, verbose))
+    logger.info(configure_logger(root_logger, verbose=verbose))
     logger.info(configure_sentry())
     logger.info("Running process")
 
