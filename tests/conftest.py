@@ -1,13 +1,11 @@
-import os
-
 import pytest
 from click.testing import CliRunner
 
 
 @pytest.fixture(autouse=True)
-def _test_env():
-    os.environ["SENTRY_DSN"] = "None"
-    os.environ["WORKSPACE"] = "test"
+def _test_env(monkeypatch):
+    monkeypatch.setenv("SENTRY_DSN", "None")
+    monkeypatch.setenv("WORKSPACE", "test")
 
 
 @pytest.fixture
