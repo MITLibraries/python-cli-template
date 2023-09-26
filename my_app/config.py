@@ -4,7 +4,7 @@ import os
 import sentry_sdk
 
 
-def configure_logger(logger: logging.Logger, verbose: bool) -> str:
+def configure_logger(logger: logging.Logger, *, verbose: bool) -> str:
     if verbose:
         logging.basicConfig(
             format="%(asctime)s %(levelname)s %(name)s.%(funcName)s() line %(lineno)d: "
