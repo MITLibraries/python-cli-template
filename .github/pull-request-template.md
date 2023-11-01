@@ -1,39 +1,30 @@
-### What does this PR do?
-
-Describe the overall purpose of the PR changes. Doesn't need to be as specific as the
-individual commits.
-
-### Helpful background context
-
-Describe any additional context beyond what the PR accomplishes if it is likely to be
-useful to a reviewer.
-
-Delete this section if it isn't applicable to the PR.
+### Purpose and background context
+I'm PRing this repo first to refine the template and then I will PR [python-lambda-template](https://github.com/MITLibraries/python-lambda-template). Nitpick away, no suggestion is too minor as we refine this 🙂 
 
 ### How can a reviewer manually see the effects of these changes?
-
-Explain how to see the proposed changes in the application if possible.
-
-Delete this section if it isn't applicable to the PR.
+View this PR for an example of the updated template.
 
 ### Includes new or updated dependencies?
+NO
 
-YES | NO
+#### Changes expectations for external applications?
+NO
 
 ### What are the relevant tickets?
-
-Include links to Jira Software and/or Jira Service Management tickets here.
+- NA
 
 ### Developer
-
-- [ ] All new ENV is documented in README (or there is none)
+- [ ] All new ENV is documented in README
+- [ ] All new ENV has been added to staging and production environments
+- [ ] All related Jira tickets are linked in commit message(s)
 - [ ] Stakeholder approval has been confirmed (or is not needed)
 
 ### Code Reviewer
+|Reviewer 1|Reviewer 2|Checklist|
+|-------------|-----------|-----------|
+|<li> [ ] </li>|<li> [ ] </li>|The commit message is clear and follows our guidelines (not just this PR message)|
+|<li> [ ] </li>|<li> [ ] </li>|There are appropriate tests covering any new functionality|
+|<li> [ ] </li>|<li> [ ] </li>|The documentation has been updated or is unnecessary|
+|<li> [ ] </li>|<li> [ ] </li>|The changes have been verified|
+|<li> [ ] </li>|<li> [ ] </li>|New dependencies are appropriate or there were no changes|
 
-- [ ] The commit message is clear and follows our guidelines
-      (not just this pull request message)
-- [ ] There are appropriate tests covering any new functionality
-- [ ] The documentation has been updated or is unnecessary
-- [ ] The changes have been verified
-- [ ] New dependencies are appropriate or there were no changes
