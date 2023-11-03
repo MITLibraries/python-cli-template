@@ -1,17 +1,19 @@
 ### Purpose and background context
-I'm PRing this repo first to refine the template and then I will PR [python-lambda-template](https://github.com/MITLibraries/python-lambda-template). Nitpick away, no suggestion is too minor as we refine this 🙂 
+Describe the overall purpose of the PR changes and any useful background context.
 
 ### How can a reviewer manually see the effects of these changes?
-View this PR for an example of the updated template.
+Explain how to see the proposed changes in the application if possible.
+
+Delete this section if it isn't applicable to the PR.
 
 ### Includes new or updated dependencies?
-NO
+YES | NO
 
-#### Changes expectations for external applications?
-NO
+### Changes expectations for external applications?
+YES | NO
 
 ### What are the relevant tickets?
-- NA
+- Include links to Jira Software and/or Jira Service Management tickets here.
 
 ### Developer
 - [ ] All new ENV is documented in README
@@ -19,12 +21,10 @@ NO
 - [ ] All related Jira tickets are linked in commit message(s)
 - [ ] Stakeholder approval has been confirmed (or is not needed)
 
-### Code Reviewer
-|Reviewer 1|Reviewer 2|Checklist|
-|-------------|-----------|-----------|
-|<li> [ ] </li>|<li> [ ] </li>|The commit message is clear and follows our guidelines (not just this PR message)|
-|<li> [ ] </li>|<li> [ ] </li>|There are appropriate tests covering any new functionality|
-|<li> [ ] </li>|<li> [ ] </li>|The documentation has been updated or is unnecessary|
-|<li> [ ] </li>|<li> [ ] </li>|The changes have been verified|
-|<li> [ ] </li>|<li> [ ] </li>|New dependencies are appropriate or there were no changes|
+### Code Reviewer(s)
+- [ ] The commit message is clear and follows our guidelines (not just this PR message)
+- [ ] There are appropriate tests covering any new functionality
+- [ ] The documentation has been updated or is unnecessary
+- [ ] Any manual tests have been performed and verified
+- [ ] New dependencies are appropriate or there were no changes
 
