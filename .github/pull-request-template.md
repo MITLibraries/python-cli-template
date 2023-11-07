@@ -24,7 +24,7 @@ YES | NO
 ### Code Reviewer(s)
 - [ ] The commit message is clear and follows our guidelines (not just this PR message)
 - [ ] There are appropriate tests covering any new functionality
-- [ ] The documentation has been updated or is unnecessary
+- [ ] The provided documentation is sufficient for understanding any new functionality introduced
 - [ ] Any manual tests have been performed and verified
 - [ ] New dependencies are appropriate or there were no changes
 
