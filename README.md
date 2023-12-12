@@ -26,6 +26,7 @@ Description of the app
 
 ## Development
 
+- To preview a list of available Makefile commands: `make help`
 - To install with dev dependencies: `make install`
 - To update dependencies: `make update`
 - To run unit tests: `make test`
