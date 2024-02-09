@@ -33,7 +33,27 @@ Description of the app
 - To lint the repo: `make lint`
 - To run the app: `pipenv run my_app --help`
 
-## Required ENV
+## Environment variables
 
-- `SENTRY_DSN` = If set to a valid Sentry DSN, enables Sentry exception monitoring. This is not needed for local development.
-- `WORKSPACE` = Set to `dev` for local development, this will be set to `stage` and `prod` in those environments by Terraform.
+### Required
+
+```
+# If set to a valid Sentry DSN, enables Sentry exception monitoring. This is not needed for local development.
+SENTRY_DSN=
+
+# Set to `dev` for local development, this will be set to `stage` and `prod` in those environments by Terraform.
+WORKSPACE=
+```
+
+### Optional
+
+_Delete this section if it isn't applicable to the PR._
+
+```
+# Description for optional environment variable
+<OPTIONAL_ENV>=
+```
+
+
+
+
