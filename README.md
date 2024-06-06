@@ -2,7 +2,7 @@
 
 A template repository for creating Python CLI applications.
 
-## App setup (delete this section and above after initial application setup)
+## App Setup (delete this section and above after initial application setup)
 
 1. Rename "my_app" to the desired app name across the repo. (May be helpful to do a project-wide find-and-replace).
 2. Update Python version if needed.
@@ -33,25 +33,21 @@ Description of the app
 - To lint the repo: `make lint`
 - To run the app: `pipenv run my_app --help`
 
-## Environment variables
+## Environment Variables
 
 ### Required
 
-```
-# If set to a valid Sentry DSN, enables Sentry exception monitoring. This is not needed for local development.
-SENTRY_DSN=
-
-# Set to `dev` for local development, this will be set to `stage` and `prod` in those environments by Terraform.
-WORKSPACE=
+```shell
+SENTRY_DSN=### If set to a valid Sentry DSN, enables Sentry exception monitoring. This is not needed for local development.
+WORKSPACE=### Set to `dev` for local development, this will be set to `stage` and `prod` in those environments by Terraform.
 ```
 
 ### Optional
 
 _Delete this section if it isn't applicable to the PR._
 
-```
-# Description for optional environment variable
-<OPTIONAL_ENV>=
+```shell
+<OPTIONAL_ENV>=### Description for optional environment variable
 ```
 
 
