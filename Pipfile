@@ -14,6 +14,7 @@ mypy = "*"
 pre-commit = "*"
 pytest = "*"
 ruff = "*"
+pip-audit = "*"
 
 [requires]
 python_version = "3.12"
