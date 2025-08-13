@@ -31,7 +31,7 @@ Description of the app
 - To update dependencies: `make update`
 - To run unit tests: `make test`
 - To lint the repo: `make lint`
-- To run the app: `pipenv run my_app --help`
+- To run the app: `uv run my_app --help`
 
 ## Environment Variables
 

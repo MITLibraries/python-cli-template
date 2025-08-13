@@ -5,28 +5,40 @@ help: # Preview Makefile commands
 	@awk 'BEGIN { FS = ":.*#"; print "Usage:  make <target>\n\nTargets:" } \
 /^[-_[:alpha:]]+:.?*#/ { printf "  %-15s%s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 
-#######################
-# Dependency commands
-#######################
+# ensure OS binaries aren't called if naming conflict with Make recipes
+.PHONY: help venv install update test coveralls lint black mypy ruff safety lint-apply black-apply ruff-apply
 
-install: # Install Python dependencies
-	pipenv install --dev
-	pipenv run pre-commit install
+##############################################
+# Python Environment and Dependency commands
+##############################################
 
-update: install # Update Python dependencies
-	pipenv clean
-	pipenv update --dev
+install: .venv .git/hooks/pre-commit # Install Python dependencies and create virtual environment if not exists
+	uv sync --dev
+
+.venv: # Creates virtual environment if not found
+	@echo "Creating virtual environment at .venv..."
+	uv venv .venv
+
+.git/hooks/pre-commit: # Sets up pre-commit hook if not setup
+	@echo "Installing pre-commit hooks..."
+	uv run pre-commit install
+
+venv: .venv # Create the Python virtual environment
+
+update: # Update Python dependencies
+	uv lock --upgrade
+	uv sync --dev
 
 ######################
 # Unit test commands
 ######################
 
 test: # Run tests and print a coverage report
-	pipenv run coverage run --source=my_app -m pytest -vv
-	pipenv run coverage report -m
+	uv run coverage run --source=my_app -m pytest -vv
+	uv run coverage report -m
 
 coveralls: test # Write coverage data to an LCOV report
-	pipenv run coverage lcov -o ./coverage/lcov.info
+	uv run coverage lcov -o ./coverage/lcov.info
 
 ####################################
 # Code quality and safety commands
@@ -35,23 +47,21 @@ coveralls: test # Write coverage data to an LCOV report
 lint: black mypy ruff safety # Run linters
 
 black: # Run 'black' linter and print a preview of suggested changes
-	pipenv run black --check --diff .
+	uv run black --check --diff .
 
 mypy: # Run 'mypy' linter
-	pipenv run mypy .
+	uv run mypy .
 
 ruff: # Run 'ruff' linter and print a preview of errors
-	pipenv run ruff check .
+	uv run ruff check .
 
-safety: # Check for security vulnerabilities and verify Pipfile.lock is up-to-date
-	pipenv run pip-audit
-	pipenv verify
+safety: # Check for security vulnerabilities
+	uv run pip-audit
 
-lint-apply: # Apply changes with 'black' and resolve 'fixable errors' with 'ruff'
-	black-apply ruff-apply 
+lint-apply: black-apply ruff-apply # Apply changes with 'black' and resolve 'fixable errors' with 'ruff'
 
 black-apply: # Apply changes with 'black'
-	pipenv run black .
+	uv run black .
 
 ruff-apply: # Resolve 'fixable errors' with 'ruff'
-	pipenv run ruff check --fix .
+	uv run ruff check --fix .

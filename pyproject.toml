@@ -2,6 +2,27 @@
 # For MIT developers, we strongly recommend copying the pyproject.toml template from:
 # https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/3432415247/Python+Project+Linters#Template-for-pyproject.toml
 
+[project]
+name = "python-lambda-template"
+version = "2.0.0"
+requires-python = ">=3.13"
+
+dependencies = [
+    "click>=8.2.1",
+    "sentry-sdk>=2.34.1",
+]
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "coveralls>=4.0.1",
+    "mypy>=1.17.1",
+    "pip-audit>=2.9.0",
+    "pre-commit>=4.3.0",
+    "pytest>=8.4.1",
+    "ruff>=0.12.8",
+]
+
 [tool.black]
 line-length = 90
 
@@ -14,7 +35,7 @@ exclude = ["tests/"]
 log_level = "INFO"
 
 [tool.ruff]
-target-version = "py312"
+target-version = "py313"
 
 # set max line length
 line-length = 90
@@ -25,15 +46,10 @@ show-fixes = true
 [tool.ruff.lint]
 select = ["ALL", "PT"]
 ignore = [
-    # default
-    "ANN101", 
-    "ANN102", 
-    "COM812", 
+    "COM812",
     "D107", 
     "N812", 
     "PTH", 
-
-    # project-specific
     "C90",
     "D100",
     "D101", 
@@ -43,8 +59,7 @@ ignore = [
     "PLR0912",
     "PLR0913", 
     "PLR0915",
-    "S320",
-    "S321", 
+    "S321",
 ]
 
 # allow autofix behavior for specified rules
