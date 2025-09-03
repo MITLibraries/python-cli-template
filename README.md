@@ -31,7 +31,7 @@ Description of the app
 - To update dependencies: `make update`
 - To run unit tests: `make test`
 - To lint the repo: `make lint`
-- To run the app: `uv run my_app --help`
+- To run the app: `uv run my-app --help` (Note the hyphen `-` vs underscore `_` that matches the `project.scripts` in `pyproject.toml`)
 
 ## Environment Variables
 
