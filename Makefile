@@ -65,3 +65,9 @@ black-apply: # Apply changes with 'black'
 
 ruff-apply: # Resolve 'fixable errors' with 'ruff'
 	uv run ruff check --fix .
+
+##############################
+# CLI convenience commands
+##############################
+my-app: # CLI without any arguments, utilizing uv script entrypoint
+	uv run my-app

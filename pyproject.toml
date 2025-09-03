@@ -3,7 +3,7 @@
 # https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/3432415247/Python+Project+Linters#Template-for-pyproject.toml
 
 [project]
-name = "python-lambda-template"
+name = "python-cli-template"
 version = "2.0.0"
 requires-python = ">=3.13"
 
@@ -83,3 +83,10 @@ max-doc-length = 90
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[project.scripts]
+my-app = "my_app.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
