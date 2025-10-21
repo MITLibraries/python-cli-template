@@ -1,43 +1,10 @@
 name: CI
-on: push
+on:
+  pull_request:
+    paths-ignore:
+      - '.github/**'
 jobs:
   test:
-    # TODO: move this into a shared workflow, https://github.com/MITLibraries/.github/tree/main/.github/workflows
-    name: Run tests and report coverage
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v6
-
-      - name: Create virtual environment
-        run: |
-          make install
-
-      - name: Run tests and make coverage report
-        run: |
-          make test
-          make coveralls
-
-      - name: Coveralls
-        uses: coverallsapp/github-action@v2.3.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          fail-on-error: false
+    uses: mitlibraries/.github/.github/workflows/python-uv-shared-test.yml@main
   lint:
-    # TODO: move this into a shared workflow, https://github.com/MITLibraries/.github/tree/main/.github/workflows
-    name: Run linters
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v6
-
-      - name: Create virtual environment
-        run: |
-          make install
-
-      - name: Lint
-        run: make lint
+    uses: mitlibraries/.github/.github/workflows/python-uv-shared-lint.yml@main   
