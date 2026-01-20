@@ -4,7 +4,7 @@ A template repository for creating Python CLI applications.
 
 ## App Setup (delete this section and above after initial application setup)
 
-1. Rename "my_app" and "python-cli-template" to the desired app name across the repo. (May be helpful to do a project-wide find-and-replace).
+1. Rename "my_app" to the desired app name across the repo. (May be helpful to do a project-wide find-and-replace).
 2. Update Python version if needed.
 3. Install all dependencies with `make install`  to create initial Pipfile.lock with latest dependency versions.
 4. Add initial app description to README and update initial required ENV variable documentation as needed.
@@ -31,7 +31,13 @@ Description of the app
 - To update dependencies: `make update`
 - To run unit tests: `make test`
 - To lint the repo: `make lint`
-- To run the app: `uv run my-app --help` (Note the hyphen `-` vs underscore `_` that matches the `project.scripts` in `pyproject.toml`)
+- To run the app: 
+   - `my-app`
+      - requires activated project `uv` python environment
+      - utilizes `uv` built entrypoint (see `project.scripts` in `pyproject.toml`)
+      - does not support loading a `.env` file
+   - `uv run --env-file .env my-app`
+      - More verbose but supports loading a `.env` file 
 
 ## Environment Variables
 

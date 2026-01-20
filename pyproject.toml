@@ -3,7 +3,7 @@
 # https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/3432415247/Python+Project+Linters#Template-for-pyproject.toml
 
 [project]
-name = "python-cli-template"
+name = "my-app"
 version = "2.0.0"
 requires-python = ">=3.12"
 

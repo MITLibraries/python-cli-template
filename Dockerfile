@@ -15,7 +15,7 @@ COPY pyproject.toml uv.lock* ./
 # Copy CLI application
 COPY my_app ./my_app
 
-# Install package into system python, includes "marimo-launcher" script
+# Install package into the system Python environment
 RUN uv pip install --system .
 
 ENTRYPOINT ["my-app"]

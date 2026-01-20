@@ -71,16 +71,3 @@ ruff-apply: # Resolve 'fixable errors' with 'ruff'
 ##############################
 my-app: # CLI without any arguments, utilizing uv script entrypoint
 	uv run my-app
-
-
-####################################
-# Docker
-####################################
-docker-build: # Build local image for testing
-	docker build -t python-cli-template:latest .
-
-docker-shell: # Shell into local container for testing
-	docker run -it --entrypoint='bash' python-cli-template:latest
-
-docker-run: # Run main entrypoint + command without arguments
-	docker run python-cli-template:latest
