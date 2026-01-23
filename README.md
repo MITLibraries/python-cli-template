@@ -31,7 +31,13 @@ Description of the app
 - To update dependencies: `make update`
 - To run unit tests: `make test`
 - To lint the repo: `make lint`
-- To run the app: `pipenv run my_app --help`
+- To run the app: 
+   - `my-app`
+      - requires activated project `uv` python environment
+      - utilizes `uv` built entrypoint (see `project.scripts` in `pyproject.toml`)
+      - does not support loading a `.env` file
+   - `uv run --env-file .env my-app`
+      - More verbose but supports loading a `.env` file 
 
 ## Environment Variables
 
