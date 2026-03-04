@@ -6,7 +6,7 @@ help: # Preview Makefile commands
 /^[-_[:alpha:]]+:.?*#/ { printf "  %-15s%s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 
 # ensure OS binaries aren't called if naming conflict with Make recipes
-.PHONY: help venv install update test coveralls lint black mypy ruff safety lint-apply black-apply ruff-apply
+.PHONY: help install venv update test coveralls lint lint-fix security my-app
 
 ##############################################
 # Python Environment and Dependency commands
