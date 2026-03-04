@@ -1,29 +1,28 @@
 default_language_version:
   python: python3.12
+default_stages:
+  - pre-push
 repos:
   - repo: local
     hooks:
-      - id: black-apply
-        name: black-apply
-        entry: uv run black
+      - id: ruff-format
+        name: ruff-format
+        entry: uv run ruff format --diff
         language: system
         pass_filenames: true
-        types: ["python"]
+        types: [ "python" ]
+
       - id: mypy
         name: mypy
         entry: uv run mypy
         language: system
         pass_filenames: true
-        types: ["python"]
-        exclude: "tests/"
-      - id: ruff-apply
-        name: ruff-apply
-        entry: uv run ruff check --fix
+        types: [ "python" ]
+        exclude: "(tests/|output/|migrations/)"
+
+      - id: ruff-check
+        name: ruff-check
+        entry: uv run ruff check
         language: system
         pass_filenames: true
-        types: ["python"]
-      - id: pip-audit
-        name: pip-audit
-        entry: uv run pip-audit
-        language: system
-        pass_filenames: false
+        types: [ "python" ]

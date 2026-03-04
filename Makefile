@@ -21,7 +21,7 @@ install: .venv .git/hooks/pre-commit # Install Python dependencies and create vi
 
 .git/hooks/pre-commit: # Sets up pre-commit hook if not setup
 	@echo "Installing pre-commit hooks..."
-	uv run pre-commit install
+	uv run pre-commit install --hook-type pre-push --hook-type pre-commit
 
 venv: .venv # Create the Python virtual environment
 
@@ -41,30 +41,20 @@ coveralls: test # Write coverage data to an LCOV report
 	uv run coverage lcov -o ./coverage/lcov.info
 
 ####################################
-# Code quality and safety commands
+# Code linting and formatting
 ####################################
 
-lint: black mypy ruff safety # Run linters
-
-black: # Run 'black' linter and print a preview of suggested changes
-	uv run black --check --diff .
-
-mypy: # Run 'mypy' linter
+lint: # Run linting, alerts only, no code changes
+	uv run ruff format --diff
 	uv run mypy .
-
-ruff: # Run 'ruff' linter and print a preview of errors
 	uv run ruff check .
 
-safety: # Check for security vulnerabilities
-	uv run pip-audit
-
-lint-apply: black-apply ruff-apply # Apply changes with 'black' and resolve 'fixable errors' with 'ruff'
-
-black-apply: # Apply changes with 'black'
-	uv run black .
-
-ruff-apply: # Resolve 'fixable errors' with 'ruff'
+lint-fix: # Run linting, auto fix behaviors where supported
+	uv run ruff format .
 	uv run ruff check --fix .
+
+security: # Run security / vulnerability checks
+	uv run pip-audit
 
 ##############################
 # CLI convenience commands
