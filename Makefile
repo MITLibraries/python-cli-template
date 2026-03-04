@@ -12,16 +12,20 @@ help: # Preview Makefile commands
 # Python Environment and Dependency commands
 ##############################################
 
-install: .venv .git/hooks/pre-commit # Install Python dependencies and create virtual environment if not exists
+install: .venv .git/hooks/pre-commit .git/hooks/pre-push # Install Python dependencies and create virtual environment if not exists
 	uv sync --dev
 
 .venv: # Creates virtual environment if not found
 	@echo "Creating virtual environment at .venv..."
 	uv venv .venv
 
-.git/hooks/pre-commit: # Sets up pre-commit hook if not setup
-	@echo "Installing pre-commit hooks..."
-	uv run pre-commit install --hook-type pre-push --hook-type pre-commit
+.git/hooks/pre-commit: # Sets up pre-commit commit hooks if not setup
+	@echo "Installing pre-commit commit hooks..."
+	uv run pre-commit install --hook-type pre-commit
+
+.git/hooks/pre-push: # Sets up pre-commit push hooks if not setup
+	@echo "Installing pre-commit push hooks..."
+	uv run pre-commit install --hook-type pre-push
 
 venv: .venv # Create the Python virtual environment
 
