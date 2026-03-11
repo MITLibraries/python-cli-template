@@ -6,22 +6,26 @@ help: # Preview Makefile commands
 /^[-_[:alpha:]]+:.?*#/ { printf "  %-15s%s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 
 # ensure OS binaries aren't called if naming conflict with Make recipes
-.PHONY: help venv install update test coveralls lint black mypy ruff safety lint-apply black-apply ruff-apply
+.PHONY: help install venv update test coveralls lint lint-fix security my-app
 
 ##############################################
 # Python Environment and Dependency commands
 ##############################################
 
-install: .venv .git/hooks/pre-commit # Install Python dependencies and create virtual environment if not exists
+install: .venv .git/hooks/pre-commit .git/hooks/pre-push # Install Python dependencies and create virtual environment if not exists
 	uv sync --dev
 
 .venv: # Creates virtual environment if not found
 	@echo "Creating virtual environment at .venv..."
 	uv venv .venv
 
-.git/hooks/pre-commit: # Sets up pre-commit hook if not setup
-	@echo "Installing pre-commit hooks..."
-	uv run pre-commit install
+.git/hooks/pre-commit: # Sets up pre-commit commit hooks if not setup
+	@echo "Installing pre-commit commit hooks..."
+	uv run pre-commit install --hook-type pre-commit
+
+.git/hooks/pre-push: # Sets up pre-commit push hooks if not setup
+	@echo "Installing pre-commit push hooks..."
+	uv run pre-commit install --hook-type pre-push
 
 venv: .venv # Create the Python virtual environment
 
@@ -41,30 +45,20 @@ coveralls: test # Write coverage data to an LCOV report
 	uv run coverage lcov -o ./coverage/lcov.info
 
 ####################################
-# Code quality and safety commands
+# Code linting and formatting
 ####################################
 
-lint: black mypy ruff safety # Run linters
-
-black: # Run 'black' linter and print a preview of suggested changes
-	uv run black --check --diff .
-
-mypy: # Run 'mypy' linter
+lint: # Run linting, alerts only, no code changes
+	uv run ruff format --diff
 	uv run mypy .
-
-ruff: # Run 'ruff' linter and print a preview of errors
 	uv run ruff check .
 
-safety: # Check for security vulnerabilities
-	uv run pip-audit
-
-lint-apply: black-apply ruff-apply # Apply changes with 'black' and resolve 'fixable errors' with 'ruff'
-
-black-apply: # Apply changes with 'black'
-	uv run black .
-
-ruff-apply: # Resolve 'fixable errors' with 'ruff'
+lint-fix: # Run linting, auto fix behaviors where supported
+	uv run ruff format .
 	uv run ruff check --fix .
+
+security: # Run security / vulnerability checks
+	uv run pip-audit
 
 ##############################
 # CLI convenience commands
