@@ -6,7 +6,7 @@ A template repository for creating Python CLI applications.
 
 1. Rename "my_app" to the desired app name across the repo. (May be helpful to do a project-wide find-and-replace).
 2. Update Python version if needed.
-3. Install all dependencies with `make install` to install dependencies and set up the development environment.
+3. Create virtual environment and install dependencies with `make install`.
 4. Add initial app description to README and update initial required ENV variable documentation as needed.
 5. Update license if needed (check app-specific dependencies for licensing terms).
 6. Check Github repository settings:
@@ -19,6 +19,7 @@ A template repository for creating Python CLI applications.
    - Send initial exceptions to Sentry project for dev, stage, and prod environments to create them.
    - Create an alert for the prod environment only, with notifications sent to the appropriate team(s).
    - If *not* using Sentry, delete Sentry configuration from config.py and test_config.py, and remove sentry_sdk from project dependencies.
+8. Update placeholder `<REPOSITORY_NAME>` in `.github/workflows` YAML files and `Makefile`.
 
 # my_app
 
