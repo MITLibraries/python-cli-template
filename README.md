@@ -19,7 +19,7 @@ A template repository for creating Python CLI applications.
    - Send initial exceptions to Sentry project for dev, stage, and prod environments to create them.
    - Create an alert for the prod environment only, with notifications sent to the appropriate team(s).
    - If *not* using Sentry, delete Sentry configuration from config.py and test_config.py, and remove sentry_sdk from project dependencies.
-8. Update placeholder `<REPOSITORY_NAME>` in `.github/workflows` YAML files and `Makefile`.
+8. Update placeholder `<REPOSITORY_NAME>` in `.github/workflows` YAML files and `Makefile`.  Make sure to coordinate with InfraEng's work on the `mitlib-tf-workloads-ecr` repository as needed.  
 
 # my_app
 
