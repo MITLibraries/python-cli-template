@@ -157,3 +157,5 @@ output/
 .vscode/
 
 .arch_tag
+
+.tool-versions

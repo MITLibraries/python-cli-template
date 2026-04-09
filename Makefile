@@ -97,6 +97,15 @@ dist-dev: check-arch # Build docker container (intended for developer-based manu
 		--tag $(ECR_NAME_DEV):$$ARCH_TAG \
 		.
 
+publish-dev: dist-dev # Build, tag and push (intended for developer-based manual publish)
+	@ARCH_TAG=$$(cat .arch_tag); \
+	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $(ECR_URL_DEV); \
+	docker push $(ECR_URL_DEV):$$ARCH_TAG; \
+	docker push $(ECR_URL_DEV):make-$$ARCH_TAG; \
+	docker push $(ECR_URL_DEV):make-$(shell git describe --always); \
+	echo "Cleaning up dangling Docker images..."; \
+	docker image prune -f --filter "dangling=true"
+
 docker-clean: # Clean up Docker detritus
 	@ARCH_TAG=$$(cat .arch_tag); \
 	echo "Cleaning up Docker leftovers (containers, images, builders)"; \
@@ -106,12 +115,3 @@ docker-clean: # Clean up Docker detritus
 	docker rmi -f $(ECR_NAME_DEV):$$ARCH_TAG || true; \
 	docker buildx rm $(ECR_NAME_DEV) || true
 	@rm -rf .arch_tag
-
-publish-dev: dist-dev # Build, tag and push (intended for developer-based manual publish)
-	@ARCH_TAG=$$(cat .arch_tag); \
-	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $(ECR_URL_DEV); \
-	docker push $(ECR_URL_DEV):$$ARCH_TAG; \
-	docker push $(ECR_URL_DEV):make-$$ARCH_TAG; \
-	docker push $(ECR_URL_DEV):make-$(shell git describe --always); \
-	echo "Cleaning up dangling Docker images..."; \
-	docker image prune -f --filter "dangling=true"

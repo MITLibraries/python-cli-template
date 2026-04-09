@@ -20,3 +20,4 @@ jobs:
       GHA_ROLE_PROD: <REPOSITORY_NAME>-gha-prod # NOTE: required update from template values
       ECR_STAGE: <REPOSITORY_NAME>-stage # NOTE: required update from template values
       ECR_PROD: <REPOSITORY_NAME>-prod # NOTE: required update from template values
+      # DEFAULT_BRANCH: # Only if the default branch is not "main"!

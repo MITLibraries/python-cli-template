@@ -21,3 +21,5 @@ jobs:
       AWS_REGION: us-east-1
       GHA_ROLE: <REPOSITORY_NAME>-gha-stage # NOTE: required update from template values
       ECR: <REPOSITORY_NAME>-stage # NOTE: required update from template values
+      # DOCKERFILE: # only if the name of the Dockerfile is not "Dockerfile"!
+      # PREBUILD: # only if there is some pre-build dependency
