@@ -1,0 +1,25 @@
+name: Stage Image Build and Deploy
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '.github/**'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+
+  build-push:
+    name: Stage Build and Push
+    uses: mitlibraries/.github/.github/workflows/ecr-multi-arch-deploy-stage.yml@main
+    secrets: inherit
+    with:
+      AWS_REGION: us-east-1
+      GHA_ROLE: <REPOSITORY_NAME>-gha-stage # NOTE: required update from template values
+      ECR: <REPOSITORY_NAME>-stage # NOTE: required update from template values
+      # DOCKERFILE: # only if the name of the Dockerfile is not "Dockerfile"!
+      # PREBUILD: # only if there is some pre-build dependency

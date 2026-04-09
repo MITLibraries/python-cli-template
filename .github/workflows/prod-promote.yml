@@ -1,0 +1,23 @@
+name: Prod Image Promote
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+
+  promote:
+    name: Prod promote
+    uses: mitlibraries/.github/.github/workflows/ecr-multi-arch-promote-prod.yml@main
+    secrets: inherit
+    with:
+      AWS_REGION: us-east-1
+      GHA_ROLE_STAGE: <REPOSITORY_NAME>-gha-stage # NOTE: required update from template values
+      GHA_ROLE_PROD: <REPOSITORY_NAME>-gha-prod # NOTE: required update from template values
+      ECR_STAGE: <REPOSITORY_NAME>-stage # NOTE: required update from template values
+      ECR_PROD: <REPOSITORY_NAME>-prod # NOTE: required update from template values
+      # DEFAULT_BRANCH: # Only if the default branch is not "main"!
